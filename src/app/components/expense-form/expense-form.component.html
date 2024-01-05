@@ -1,0 +1,62 @@
+<section >
+    <button mat-flat-button color="primary" (click)="onAddNewExpense()">Add New Expense</button>
+</section>
+
+<section>
+    <form [formGroup]="ExpenseForm" (ngSubmit)="onSubmit()">
+        <!-- expense name -->
+        <div class="form-container">
+            <label for="expense">Expense</label>
+            <input 
+            type="text"
+            name="expense"
+            id="expense"
+            placeholder="Gasolina"
+            formControlName="expense"
+            required>
+        </div>
+
+        <!-- amount -->
+        <div class="form-container">
+            <label for="amount">Amount</label>
+            <input 
+            type="number"
+            name="amount"
+            id="amount"
+            placeholder="100"
+            formControlName="amount"
+            required>
+        </div>
+
+        <!-- date -->
+        <div class="form-container">
+            <label for="date">Date</label>
+            <input 
+            type="text"
+            name="date"
+            id="date"
+            placeholder="January 3"
+            formControlName="date"
+            required>
+        </div>
+
+        <!-- category -->
+        <div class="form-container">
+            <label for="category">Category</label>
+            <input 
+            type="text"
+            name="category"
+            id="category"
+            placeholder="msi"
+            formControlName="category"
+            required>
+        </div>
+
+
+        <!-- submit button -->
+        <div>
+            <button type="submit" mat-flat-button color="primary">Add</button>
+        </div>
+    </form>
+</section>
+
