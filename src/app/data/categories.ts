@@ -1,7 +1,11 @@
-export const categories = {
+export const categories = 
+{
     msi: "MSI",
-    credit: "Credit Card",
-    unique: "Unique Expense",
-    none: "",
-    mila: "Mila"
+    credit: "Tarjeta de crédito",
+    unico: "Gasto único",
+    mila: "Mila",
+    gatos: "Gatos",
+    social: "Social",
+    fijos: "Gastos Fijos",
+    viajes: "Viajes"
 }

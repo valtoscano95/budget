@@ -3,14 +3,13 @@ import { categories } from "./categories"
 //save later in DB
 export const budget2023 =[
     //january
+    // //january
     [
         {
             date: 'january 1',
             amount: 400,
             expense: "Baño Mila",
-            category: categories.mila,
-            actions: ['edit', 'delete']
-    
+            category: categories.mila    
         },
         {
             date: 'january 3',
