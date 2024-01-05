@@ -1,8 +1,11 @@
+section{
+  margin: 0 0 20px 0;
+}
 .form-input-container{
     width: 300px;
-    max-width: 49%;
-    margin: 0 20px 20px 0;
-    display: inline-block;
+    max-width: 25%;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
   
   .form-container label{
@@ -13,7 +16,13 @@
   width: 100%;
 }
 
-.submit-button{
-  width: 300px;
-  max-width: 49%;
+.form-button{
+  width: 200px;
+  margin: 0 10px;
+}
+
+.displayFlex{
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
 }

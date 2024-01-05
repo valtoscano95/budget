@@ -12,15 +12,15 @@ import { ExpenseService } from 'src/app/services/expense-service.service';
   styleUrls: ['./expense-form.component.css']
 })
 export class ExpenseFormComponent implements OnInit {
-  constructor(private expenseService: ExpenseService){
-
-  }
+  constructor(private expenseService: ExpenseService){}
 
   showExpenseForm:boolean = false;
   categories: Category[];
   selectedCategory: string;
   isFormValid:boolean;
   newExpense: Expense;
+
+
   ExpenseForm = new FormGroup({
     expense: new FormControl('', Validators.required),
     amount: new FormControl(null, [Validators.required, Validators.min(1)]),
@@ -37,13 +37,10 @@ export class ExpenseFormComponent implements OnInit {
   onSubmit(){
     this.CheckFormValidity(this.ExpenseForm);
     if(this.isFormValid){
-      this.showExpenseForm = !this.showExpenseForm;
       this.newExpense = this.getFormValues(this.ExpenseForm);
       this.expenseService.addNewExpense(this.newExpense);
     }
-    else{
-      this.isFormValid = false;
-    }
+    console.log(this.ExpenseForm.touched);
   }
 
   CheckFormValidity(form: FormGroup){
@@ -69,6 +66,14 @@ export class ExpenseFormComponent implements OnInit {
 
   onAddNewExpense(){
     this.showExpenseForm = !this.showExpenseForm;
+  }
+
+  onCancel(){
+    this.showExpenseForm = false;
+  }
+
+  onDone(){
+    this.showExpenseForm = false;
   }
 
 

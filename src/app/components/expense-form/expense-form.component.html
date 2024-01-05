@@ -1,78 +1,83 @@
-<section >
-    <button mat-flat-button color="primary" (click)="onAddNewExpense()">Add New Expense</button>
+<section *ngIf="!showExpenseForm">
+    <button mat-flat-button color="primary" (click)="onAddNewExpense()">Add New Expenses</button>
 </section>
 
-<section>
+<section *ngIf="showExpenseForm">
     <form [formGroup]="ExpenseForm" (ngSubmit)="onSubmit()">
 
+        <p>Fill in the fields and add as many expenses as you want</p>
+        <div class="displayFlex">
+            <!-- date -->
+            <div class="form-input-container">
+                <mat-form-field class="full-width">
+                    <mat-label>Date</mat-label>
+                    <input 
+                    matInput 
+                    placeholder="100"
+                    type="date"
+                    name="date"
+                    id="date"
+                    formControlName="date"
+                    required>
+                </mat-form-field>
+            </div>
 
-        <!-- date -->
-        <div class="full-width">
-            <p>Select date of expenses to add</p>
-            <mat-form-field class="full-width">
-                <mat-label>Date</mat-label>
-                <input 
-                matInput 
-                placeholder="100"
-                type="date"
-                name="date"
-                id="date"
-                formControlName="date"
-                required>
-            </mat-form-field>
+            <!-- expense name -->
+            <div class="form-input-container">
+                <label for="expense"></label>
+                <mat-form-field class="full-width">
+                    <mat-label>Expense Name</mat-label>
+                    <input 
+                    matInput 
+                    placeholder="Eg: Gasolina"
+                    type="text"
+                    name="expense"
+                    id="expense"
+                    formControlName="expense"
+                    required>
+                </mat-form-field>
+            </div>
+            
+            <!-- amount -->
+            <div class="form-input-container">
+                <mat-form-field class="full-width">
+                    <mat-label>Amount</mat-label>
+                    <input 
+                    matInput 
+                    placeholder="100"
+                    type="number"
+                    name="amount"
+                    id="amount"
+                    formControlName="amount"
+                    required>
+                </mat-form-field>
+            </div>
+
+            <!-- category -->
+            <div class="form-input-container">
+                <mat-form-field class="full-width">
+                    <mat-label>Category</mat-label>
+                    <mat-select formControlName="category" name="category" id="category">
+                    <mat-option *ngFor="let category of categories" [value]="category.value">
+                        {{category.viewValue}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
         </div>
 
-        <!-- expense name -->
-        <div class="form-input-container">
-            <p>Add Expenses</p>
-            <label for="expense"></label>
-            <mat-form-field class="full-width">
-                <mat-label>Expense Name</mat-label>
-                <input 
-                matInput 
-                placeholder="Eg: Gasolina"
-                type="text"
-                name="expense"
-                id="expense"
-                formControlName="expense"
-                required>
-            </mat-form-field>
+        <div class="displayFlex">
+            <!-- submit button -->
+            <div>
+                <button class="form-button" type="button" mat-stroked-button color="primary" (click)="onCancel()">Cancel</button>
+                <button class="form-button" type="submit" mat-flat-button color="primary" [disabled]="!isFormValid">Add</button>
+                
+            </div>
+            <div>
+                <button class="form-button" type="button" mat-flat-button color="primary" (click)="onDone()">Done</button>
+            </div>
         </div>
         
-
-
-        <!-- amount -->
-        <div class="form-input-container">
-            <mat-form-field class="full-width">
-                <mat-label>Amount</mat-label>
-                <input 
-                matInput 
-                placeholder="100"
-                type="number"
-                name="amount"
-                id="amount"
-                formControlName="amount"
-                required>
-            </mat-form-field>
-        </div>
-
-        <!-- category -->
-        <div class="form-input-container">
-            <mat-form-field class="full-width">
-                <mat-label>Category</mat-label>
-                <mat-select formControlName="category" name="category" id="category">
-                  <mat-option *ngFor="let category of categories" [value]="category.value">
-                    {{category.viewValue}}
-                  </mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-
-
-        <!-- submit button -->
-        <div>
-            <button class="submit-button" type="submit" mat-flat-button color="primary">Add</button>
-        </div>
     </form>
 </section>
 
