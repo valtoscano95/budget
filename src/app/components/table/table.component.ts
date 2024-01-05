@@ -5,8 +5,6 @@ import { months } from 'src/app/data/months';
 import { ExpenseService } from 'src/app/services/expense-service.service';
 import { Subscription } from 'rxjs';
 
-
-// const expense_table: Expense[] = budget2023[0];
 const expense_table: Expense[] = budget2023[0];
 
 @Component({
@@ -20,8 +18,6 @@ export class TableComponent implements OnInit, OnDestroy{
   expenseArray: Expense[];
   dataSource: Expense[];
   expenseCreatedSubscription: Subscription;
-
- 
 
   //table columns
   displayedColumns: string[] = ['date', 'expense', 'amount', 'category', 'actions'];
@@ -38,9 +34,11 @@ export class TableComponent implements OnInit, OnDestroy{
     //get expenses from backend (right now it's in dummy data)
     this.dataSource = this.getExpenses(expense_table);
 
+
+    //subscribe to behaviour subject for when a new expense is added
     this.expenseCreatedSubscription = this.expenseService.expenseCreated.subscribe((expense:Expense)=>{
       if(expense){
-        const newExpenseArray = [...this.dataSource, expense];
+        const newExpenseArray = [expense, ...this.dataSource];
         this.dataSource = newExpenseArray;
       }
     });
