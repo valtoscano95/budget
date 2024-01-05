@@ -4,58 +4,74 @@
 
 <section>
     <form [formGroup]="ExpenseForm" (ngSubmit)="onSubmit()">
-        <!-- expense name -->
-        <div class="form-container">
-            <label for="expense">Expense</label>
-            <input 
-            type="text"
-            name="expense"
-            id="expense"
-            placeholder="Gasolina"
-            formControlName="expense"
-            required>
-        </div>
 
-        <!-- amount -->
-        <div class="form-container">
-            <label for="amount">Amount</label>
-            <input 
-            type="number"
-            name="amount"
-            id="amount"
-            placeholder="100"
-            formControlName="amount"
-            required>
-        </div>
 
         <!-- date -->
-        <div class="form-container">
-            <label for="date">Date</label>
-            <input 
-            type="text"
-            name="date"
-            id="date"
-            placeholder="January 3"
-            formControlName="date"
-            required>
+        <div class="full-width">
+            <p>Select date of expenses to add</p>
+            <mat-form-field class="full-width">
+                <mat-label>Date</mat-label>
+                <input 
+                matInput 
+                placeholder="100"
+                type="date"
+                name="date"
+                id="date"
+                formControlName="date"
+                required>
+            </mat-form-field>
+        </div>
+
+        <!-- expense name -->
+        <div class="form-input-container">
+            <p>Add Expenses</p>
+            <label for="expense"></label>
+            <mat-form-field class="full-width">
+                <mat-label>Expense Name</mat-label>
+                <input 
+                matInput 
+                placeholder="Eg: Gasolina"
+                type="text"
+                name="expense"
+                id="expense"
+                formControlName="expense"
+                required>
+            </mat-form-field>
+        </div>
+        
+
+
+        <!-- amount -->
+        <div class="form-input-container">
+            <mat-form-field class="full-width">
+                <mat-label>Amount</mat-label>
+                <input 
+                matInput 
+                placeholder="100"
+                type="number"
+                name="amount"
+                id="amount"
+                formControlName="amount"
+                required>
+            </mat-form-field>
         </div>
 
         <!-- category -->
-        <div class="form-container">
-            <label for="category">Category</label>
-            <input 
-            type="text"
-            name="category"
-            id="category"
-            placeholder="msi"
-            formControlName="category"
-            required>
+        <div class="form-input-container">
+            <mat-form-field class="full-width">
+                <mat-label>Category</mat-label>
+                <mat-select formControlName="category" name="category" id="category">
+                  <mat-option *ngFor="let category of categories" [value]="category.value">
+                    {{category.viewValue}}
+                  </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
 
 
         <!-- submit button -->
         <div>
-            <button type="submit" mat-flat-button color="primary">Add</button>
+            <button class="submit-button" type="submit" mat-flat-button color="primary">Add</button>
         </div>
     </form>
 </section>
