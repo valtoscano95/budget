@@ -12,7 +12,7 @@ import { AppRoutingModule } from './routing/app-routing.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TableComponent } from './components/table/table.component';
+import { TableComponent } from './components/budget-table/budget-table.component';
 import { ExpenseFormComponent } from './components/expense-form/expense-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
@@ -21,6 +21,9 @@ import { FinanceHealthComponent } from './components/finance-health/finance-heal
 import { ArchiveComponent } from './components/archive/archive.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { BudgetComponent } from './components/budget/budget.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     FinanceHealthComponent,
     ArchiveComponent,
     SettingsComponent,
-    DashboardComponent
+    DashboardComponent,
+    BudgetComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

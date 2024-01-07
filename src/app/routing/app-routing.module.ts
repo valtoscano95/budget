@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
 import { HomeComponent } from '../components/home/home.component';
-import { TableComponent } from '../components/table/table.component';
+import { TableComponent } from '../components/budget-table/budget-table.component';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from '../components/login/login.component';
 import { SettingsComponent } from '../components/settings/settings.component';
