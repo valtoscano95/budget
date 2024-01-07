@@ -8,15 +8,17 @@ import { SettingsComponent } from '../components/settings/settings.component';
 import { ArchiveComponent } from '../components/archive/archive.component';
 import { DashboardComponent } from '../components/dashboard/dashboard.component';
 import { NotFoundComponent } from '../components/not-found/not-found.component';
+import { BudgetComponent } from '../components/budget/budget.component';
 
 
 const appRoutes = [
   {path: "", component: HomeComponent},
   {path: "login", component: LoginComponent},
+  {path: "signup", component: LoginComponent},
   {path: "settings", component: SettingsComponent},
   {path: "archive", component: ArchiveComponent},
   {path: "dashboard", component: DashboardComponent},
-  {path: "budget", component: TableComponent},
+  {path: "budget", component: BudgetComponent},
   {path: "**", component: NotFoundComponent},
 
 ]
