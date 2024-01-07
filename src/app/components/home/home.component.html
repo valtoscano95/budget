@@ -1,8 +1,8 @@
 <section>
-    <h1>Welcome to the Budget App</h1>
-    <div class="example-button-row">
-        <button routerLink="/login" mat-flat-button color="primary">Login</button>
-        <button routerLink="/signup" mat-stroked-button color="primary">Sign up</button>
+    <h1>Welcome to the <br class="mobile"> <span class="primary-color"><strong>Budget App</strong></span></h1>
+    <div class="buttons">
+        <button routerLink="/login" (click)="login()" mat-flat-button color="primary">Login</button>
+        <button routerLink="/signup" (click)="signup()" mat-stroked-button color="primary">Sign up</button>
     </div>
 </section>
 

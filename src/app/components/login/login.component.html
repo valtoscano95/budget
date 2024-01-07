@@ -1,51 +1,45 @@
+<section>
+    <h1>{{(isLogin)?'Login':'Signup'}}</h1>
+    <!-- login/signup form -->
+    <form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+        <div class="login-signup-form">
+            <!-- email -->
+            <div class="form-input margin-auto">
+                <mat-form-field class="full-width">
+                    <mat-label>Email</mat-label>
+                    <input 
+                    matInput 
+                    placeholder="example@email.com"
+                    type="email"
+                    name="email"
+                    id="email"
+                    formControlName="email"
+                    required>
+                </mat-form-field>
+            </div>
 
-<!-- login form -->
-<form [formGroup]="LoginForm" (ngSubmit)="onSubmit()">
+            <!-- expense name -->
+            <div class="form-input margin-auto">
+                <label for="password"></label>
+                <mat-form-field class="full-width">
+                    <mat-label>Password</mat-label>
+                    <input 
+                    matInput 
+                    placeholder="password"
+                    type="password"
+                    name="password"
+                    id="password"
+                    formControlName="password"
+                    required>
+                </mat-form-field>
+            </div>
 
-    <div class="displayFlex">
-        <!-- email -->
-        <div class="form-input-container">
-            <mat-form-field class="full-width">
-                <mat-label>email</mat-label>
-                <input 
-                matInput 
-                placeholder="100"
-                type="email"
-                name="email"
-                id="email"
-                formControlName="email"
-                required>
-            </mat-form-field>
-        </div>
-
-        <!-- expense name -->
-        <div class="form-input-container">
-            <label for="password"></label>
-            <mat-form-field class="full-width">
-                <mat-label>Password</mat-label>
-                <input 
-                matInput 
-                placeholder="password"
-                type="password"
-                name="password"
-                id="password"
-                formControlName="password"
-                required>
-            </mat-form-field>
+            <!-- buttons -->
+            <div class="login-signup-button">
+                <button routerLink="/dashboard" type="submit" mat-flat-button color="primary" [disabled]="false">Login</button>
+                <button routerLink="/" type="button" mat-stroked-button color="primary">Back</button>
+            </div>
         </div>
         
-    </div>
-
-    <div class="displayFlex">
-        <!-- submit button -->
-        <div>
-            <!-- <button class="form-button" type="button" mat-stroked-button color="primary" (click)="onCancel()">Cancel</button> -->
-            <button class="form-button" type="submit" mat-flat-button color="primary" [disabled]="false">Add</button>
-            
-        </div>
-        <!-- <div>
-            <button class="form-button" type="button" mat-flat-button color="primary" (click)="onDone()">Done</button>
-        </div> -->
-    </div>
-    
-</form>
+    </form>    
+</section>

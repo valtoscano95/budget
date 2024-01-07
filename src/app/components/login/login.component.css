@@ -1,0 +1,50 @@
+button{
+    width: 160px;
+}
+
+section{
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+
+.margin-auto{
+    margin: 0 auto;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.login-signup-form{
+    margin: 0 auto;
+    width: 350px;
+    /* display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column; */
+}
+
+.login-signup-button{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 480px) {
+    .login-signup-form{
+        max-width: 100%;
+    }
+
+    .login-signup-button{
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+    }
+
+    .login-signup-button button{
+        margin-bottom: 20px;
+        width: 100%;
+    }
+    
+}

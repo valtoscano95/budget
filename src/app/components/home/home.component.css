@@ -1,6 +1,6 @@
+
 button{
     width: 150px;
-    margin: 0 10px;
 }
 
 section{
@@ -8,4 +8,27 @@ section{
     display: flex;
     flex-flow: column;
     justify-content: center;
+}
+
+.mobile{
+    display: none;
+}
+
+.primary-color{
+    color: var(--primary-color);
+}
+
+@media only screen and (max-width:480px){
+    .mobile{
+        display: block;
+    }
+    .buttons{
+        display: flex;
+        flex-flow: column;
+    }
+
+    .buttons button{
+        margin-bottom: 20px;
+        width: 100%;
+    }
 }
