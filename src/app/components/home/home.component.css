@@ -1,21 +1,11 @@
 
 button{
     width: 150px;
-}
-
-section{
-    height: 100vh;
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
+    margin: 0 10px;
 }
 
 .mobile{
     display: none;
-}
-
-.primary-color{
-    color: var(--primary-color);
 }
 
 @media only screen and (max-width:480px){
@@ -28,7 +18,7 @@ section{
     }
 
     .buttons button{
-        margin-bottom: 20px;
+        margin: 0 0 20px 0;
         width: 100%;
     }
 }
