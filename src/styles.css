@@ -2,3 +2,41 @@
     --primary-color: #3f51b5;
     --secondary-color: #ff4081;
   }
+
+section.center{
+  padding: 0 50px;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  height: 100vh;
+}
+
+.margin-auto{
+  margin: 0 auto;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.primary-color{
+  color: var(--primary-color);
+}
+
+body{
+  margin: 0;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.fixed-top{
+  position: fixed;
+  top: 0;
+}
+
+.fixed-bottom{
+  position: fixed;
+  bottom: 0;
+}
