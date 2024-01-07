@@ -7,7 +7,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { AppRoutingModule } from './routing/app-routing.module';
+import { AppRoutingModule } from './modules/app-routing.module';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 
 import { AppComponent } from './app.component';
@@ -23,7 +25,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BudgetComponent } from './components/budget/budget.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 
 @NgModule({
@@ -40,7 +42,7 @@ import { HeaderComponent } from './components/header/header.component';
     DashboardComponent,
     BudgetComponent,
     FooterComponent,
-    HeaderComponent
+    NavbarComponent  
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { HeaderComponent } from './components/header/header.component';
     ReactiveFormsModule,
     MatInputModule,
     MatSelectModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatToolbarModule  
   ],
   providers: [],
   bootstrap: [AppComponent]
