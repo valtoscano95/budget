@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./budget.component.css']
 })
 export class BudgetComponent {
+  year = 2024;
 
 }

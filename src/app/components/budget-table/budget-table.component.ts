@@ -8,9 +8,9 @@ import { Subscription } from 'rxjs';
 const expense_table: Expense[] = budget2023[0];
 
 @Component({
-  selector: 'app-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  selector: 'app-budget-table',
+  templateUrl: './budget-table.component.html',
+  styleUrls: ['./budget-table.component.css']
 })
 export class TableComponent implements OnInit, OnDestroy{
   constructor(private expenseService: ExpenseService){}
