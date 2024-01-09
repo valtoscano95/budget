@@ -1,53 +1,61 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Expense } from '../models/expense';
+import { expenseType } from '../data/expenseType';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpenseService {
+  balance:number;
   expenseCreated = new BehaviorSubject<Expense>(null);
 
   addNewExpense(newExpense:Expense){
     this.expenseCreated.next(newExpense);
   }
 
-  test = [
-    {
-        month: 1,
-        day: 31,
-        amount: 37,
-        expense: "PLATA Paleta Dolce Natura",
-        category: 'credito',
+  //get balance of array based on an initialo balance (e.g. if it comes from a previous year)
+  getBalance(sortedExpenseArray: Expense[], initialBalance:number): Expense[]{
+    let balance = initialBalance;
+    let array = [...sortedExpenseArray];
+    for(let i=array.length; i>0; i--){
+      const item:Expense = array[i-1];
 
-    },
-    {
-        day: 3,
-        month:5,
-        amount: 400,
-        expense: "Baño Mila",
-        category: 'mila'    
+      //if it's an expense, substract amount from balance
+      if(item.type == expenseType.expense){
+        item.balance = balance - item.amount;
+        balance = item.balance;
+      }
+
+      //if it's an income add it to the balance
+      else{
+        item.balance = balance + item.amount;
+        balance = item.balance
+      }
     }
-        
-]
+    // console.log(sortedExpenseArray);
+    return array
+  }
 
-  //sort expenses
-  reverseSortExpenses(expenseList:Expense[]):Expense[]{
+  //sort expenses A-Z
+  sortExpenses(expenseList:Expense[]):Expense[]{
     let sortedList:Expense[] = []
 
-    const monthSorting = this.reverseSortByMonth(expenseList);
+    const monthSorting = this.sortByMonth(expenseList);
 
     //for each month sort by day
     for(let month of monthSorting){
-      const daySorting = this.reverseSortByDay(month);
+      const daySorting = this.sortByDay(month);
       sortedList.push(...daySorting);
     }
 
-    return sortedList;
+    //get balance
+    this.balance = 0;
+    return this.getBalance(sortedList, this.balance)
   }
 
   //sort by months Z-A: array of expenses for each month
-  reverseSortByMonth(expenseList: Expense[]): Expense[][]{
+  sortByMonth(expenseList: Expense[]): Expense[][]{
     let sortedList:Expense[][] = []
 
     //filter values for each month
@@ -66,7 +74,7 @@ export class ExpenseService {
   }
 
   //sort month expenses by day Z-A
-  reverseSortByDay(monthExpenses: Expense[]):Expense[]{
+  sortByDay(monthExpenses: Expense[]):Expense[]{
 
     //sort by the value of expense.day and return te value
     return [...monthExpenses].sort(
