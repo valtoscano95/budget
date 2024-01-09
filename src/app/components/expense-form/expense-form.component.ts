@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { categories } from 'src/app/data/categories';
 import { Category } from 'src/app/models/category';
@@ -13,7 +13,6 @@ import { ExpenseService } from 'src/app/services/expense-service.service';
 })
 export class ExpenseFormComponent implements OnInit {
   constructor(private expenseService: ExpenseService){}
-
   showExpenseForm:boolean = false;
   categories: Category[];
   selectedCategory: string;
@@ -83,6 +82,7 @@ export class ExpenseFormComponent implements OnInit {
     return arr;
   }
 
+  //when add new expense is clicked show the form
   onAddNewExpense(){
     this.showExpenseForm = !this.showExpenseForm;
   }

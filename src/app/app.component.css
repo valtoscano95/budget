@@ -2,3 +2,7 @@ main {
     justify-content: center;
     text-align: center;
 }
+
+.margin-nav{
+    height: 100px;
+}
