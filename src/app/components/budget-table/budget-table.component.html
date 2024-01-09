@@ -7,7 +7,8 @@
     <!-- Date Column -->
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef> Date </th>
-      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      <!-- get month from array using the element.month -->
+      <td mat-cell *matCellDef="let element"> {{getExpenseDate(element.month-1, element.day)}}</td>
     </ng-container>
   
     <!-- Name Column -->

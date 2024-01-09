@@ -6,19 +6,24 @@
     <form [formGroup]="ExpenseForm" (ngSubmit)="onSubmit()">
 
         <p>Fill in the fields and add as many expenses as you want</p>
-        <div class="displayFlex">
+        <div class="flex-row block-mobile block-mobile" (click)="checkChanges()" (keyup)="checkChanges()">
             <!-- date -->
             <div class="form-input-container">
-                <mat-form-field class="full-width">
-                    <mat-label>Date</mat-label>
-                    <input 
-                    matInput 
-                    placeholder="100"
-                    type="date"
-                    name="date"
-                    id="date"
-                    formControlName="date"
-                    required>
+                <mat-form-field class="half-width">
+                    <mat-label>Day</mat-label>
+                    <mat-select formControlName="day" name="day" id="day">
+                        <mat-option *ngFor="let day of days" [value]="day" (click)="checkChanges()">
+                            {{day}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="half-width">
+                    <mat-label>Month</mat-label>
+                    <mat-select formControlName="month" name="month" id="month">
+                        <mat-option *ngFor="let month of monthList" [value]="month.value" (click)="checkChanges()">
+                            {{month.viewValue}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
             </div>
 
@@ -58,22 +63,23 @@
                 <mat-form-field class="full-width">
                     <mat-label>Category</mat-label>
                     <mat-select formControlName="category" name="category" id="category">
-                    <mat-option *ngFor="let category of categories" [value]="category.value">
+                    <mat-option *ngFor="let category of categories" [value]="category.value" (click)="checkChanges()">
                         {{category.viewValue}}
                     </mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
         </div>
+        <p>isFormValid : {{isFormValid}}</p>
 
-        <div class="displayFlex">
+        <div class="flex-row block-mobile">
             <!-- submit button -->
-            <div>
+            <div class="flex-row margin-bottom-mobile">
                 <button class="form-button" type="button" mat-stroked-button color="primary" (click)="onCancel()">Cancel</button>
                 <button class="form-button" type="submit" mat-flat-button color="primary" [disabled]="!isFormValid">Add</button>
                 
             </div>
-            <div>
+            <div class="full-width-mobile">
                 <button class="form-button" type="button" mat-flat-button color="primary" (click)="onDone()">Done</button>
             </div>
         </div>

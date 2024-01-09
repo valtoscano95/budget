@@ -19,19 +19,31 @@ export class ExpenseFormComponent implements OnInit {
   selectedCategory: string;
   isFormValid:boolean;
   newExpense: Expense;
-
+  days: number[];
+  monthList: Category[];
 
   ExpenseForm = new FormGroup({
+    day: new FormControl('', Validators.required),
+    month: new FormControl('', Validators.required),
     expense: new FormControl('', Validators.required),
     amount: new FormControl(null, [Validators.required, Validators.min(1)]),
-    date: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required)
 
   });
 
   ngOnInit(): void {
     this.categories = this.getCategories(categories);
+    this.days = this.getDays();
+    this.monthList =  this.getMonths(months);
 
+  }
+
+  getDays():number[]{
+    let arr :number[]= [];
+    for(let i=0; i<31; i++){
+      arr.push(i+1);
+    }
+    return arr;
   }
 
   onSubmit(){
@@ -40,17 +52,17 @@ export class ExpenseFormComponent implements OnInit {
       this.newExpense = this.getFormValues(this.ExpenseForm);
       this.expenseService.addNewExpense(this.newExpense);
     }
-    console.log(this.ExpenseForm.touched);
   }
 
   CheckFormValidity(form: FormGroup){
     this.isFormValid = (form.valid && form.touched)? true : false;
   }
 
-  getFormValues(ExpenseForm:FormGroup): Expense|any{
+  getFormValues(ExpenseForm:FormGroup): Expense{
     const formControls = ExpenseForm.controls;
     const newExpense = {
-      date: this.getDayAndMonth(formControls['date'].value) ,
+      day: formControls['day'].value,
+      month: formControls['month'].value ,
       amount: formControls['amount'].value,
       expense: formControls['expense'].value,
       category: formControls['category'].value
@@ -58,10 +70,17 @@ export class ExpenseFormComponent implements OnInit {
     return newExpense; 
   }
 
-  getDayAndMonth(date:string):string{
-    const month = +date.split('-')[1]-1;
-    const day = +date.split('-')[2];
-    return `${months[month]} ${day}` 
+  getDayAndMonth(day:number, month:string):string{
+    return `${month} ${day}` 
+  }
+
+  getMonths(months:string[]): Category[]{
+    let arr = []
+    for(let index in months){
+      const item = {value: +index+1, viewValue:months[index]}
+      arr.push(item);
+    }
+    return arr;
   }
 
   onAddNewExpense(){
@@ -87,5 +106,8 @@ export class ExpenseFormComponent implements OnInit {
     return categoryArray
   }
 
+  checkChanges(){
+    this.isFormValid = this.ExpenseForm.valid;
+  }
 
 }

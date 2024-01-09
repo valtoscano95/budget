@@ -38,7 +38,9 @@ export class TableComponent implements OnInit, OnDestroy{
     //subscribe to behaviour subject for when a new expense is added
     this.expenseCreatedSubscription = this.expenseService.expenseCreated.subscribe((expense:Expense)=>{
       if(expense){
+        //sort expenses
         const newExpenseArray = [expense, ...this.dataSource];
+        const sortedExpenseArray = this.expenseService.sortExpenses(newExpenseArray);
         this.dataSource = newExpenseArray;
       }
     });
