@@ -3,5 +3,7 @@ export interface Expense{
     month: number,
     amount: number;
     expense: string;
-    category?: string;
+    category: number;
+    balance?: number
+    type: string
 }

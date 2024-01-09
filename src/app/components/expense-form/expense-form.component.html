@@ -63,12 +63,26 @@
                 <mat-form-field class="full-width">
                     <mat-label>Category</mat-label>
                     <mat-select formControlName="category" name="category" id="category">
-                    <mat-option *ngFor="let category of categories" [value]="category.value" (click)="checkChanges()">
+                    <mat-option *ngFor="let category of categories" [value]="category.categoryID" (click)="checkChanges()">
                         {{category.viewValue}}
                     </mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
+
+            <!-- expense type -->
+            <div class="form-input-container">
+                <mat-form-field class="full-width">
+                    <mat-label>Expense Type</mat-label>
+                    <mat-select formControlName="type" name="type" id="type">
+                    <mat-option *ngFor="let type of expenseTypes" [value]="type.value" (click)="checkChanges()">
+                        {{type.viewValue}}
+                    </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+
+
         </div>
 
         <div class="form-button-container full-width">

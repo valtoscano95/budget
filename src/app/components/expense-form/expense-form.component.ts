@@ -1,18 +1,24 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { categories } from 'src/app/data/categories';
 import { Category } from 'src/app/models/category';
 import { Expense } from 'src/app/models/expense';
 import { months } from 'src/app/data/months';
 import { ExpenseService } from 'src/app/services/expense-service.service';
+import { CategoryService } from 'src/app/services/category.service';
+import { expenseType } from 'src/app/data/expenseType';
 
+
+interface SelectOptions{
+  value:string,
+  viewValue:string
+}
 @Component({
   selector: 'app-expense-form',
   templateUrl: './expense-form.component.html',
   styleUrls: ['./expense-form.component.css']
 })
 export class ExpenseFormComponent implements OnInit {
-  constructor(private expenseService: ExpenseService){}
+  constructor(private expenseService: ExpenseService, private categoryService: CategoryService){}
   showExpenseForm:boolean = false;
   categories: Category[];
   selectedCategory: string;
@@ -20,21 +26,36 @@ export class ExpenseFormComponent implements OnInit {
   newExpense: Expense;
   days: number[];
   monthList: Category[];
+  expenseTypes: {}
 
   ExpenseForm = new FormGroup({
     day: new FormControl('', Validators.required),
     month: new FormControl('', Validators.required),
     expense: new FormControl('', Validators.required),
     amount: new FormControl(null, [Validators.required, Validators.min(1)]),
-    category: new FormControl('', Validators.required)
+    category: new FormControl('', Validators.required),
+    type: new FormControl('', Validators.required)
 
   });
 
   ngOnInit(): void {
-    this.categories = this.getCategories(categories);
+    this.categories = this.categoryService.getCategories();
     this.days = this.getDays();
     this.monthList =  this.getMonths(months);
+    this.expenseTypes = this.getExpenseTypes();
 
+  }
+
+  getExpenseTypes():SelectOptions[]{
+    let array = [];
+    const keys = Object.keys(expenseType);
+    for (let key of keys){
+      const item = {
+        value: key, viewValue: `${expenseType[key]}`
+      }
+      array.push(item);
+    }
+    return array
   }
 
   getDays():number[]{
@@ -64,8 +85,10 @@ export class ExpenseFormComponent implements OnInit {
       month: formControls['month'].value ,
       amount: formControls['amount'].value,
       expense: formControls['expense'].value,
-      category: formControls['category'].value
+      category: formControls['category'].value,
+      type: formControls['type'].value
     };
+    console.log(newExpense);
     return newExpense; 
   }
 
@@ -93,17 +116,6 @@ export class ExpenseFormComponent implements OnInit {
 
   onDone(){
     this.showExpenseForm = false;
-  }
-
-
-  getCategories(object:{}):Category[]{
-    const keys = Object.keys(object);
-    let categoryArray = [];
-    for(let key of keys){
-      const item = {value: key, viewValue: object[`${key}`]}
-      categoryArray.push(item);
-    }
-    return categoryArray
   }
 
   checkChanges(){

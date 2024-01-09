@@ -1,4 +1,5 @@
 export interface Category {
-    value: string;
+    categoryID: number,
     viewValue: string;
+    color?: string;
   }
