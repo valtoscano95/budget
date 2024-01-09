@@ -9,6 +9,7 @@ section.center{
   justify-content: center;
   flex-flow: column;
   height: 100vh;
+  align-items: center;
 }
 
 .margin-auto{
@@ -31,6 +32,12 @@ body{
   justify-content: center;
 }
 
+.flex-row{
+  display: inline-flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
 .fixed-top{
   position: fixed;
   top: 0;
@@ -40,3 +47,22 @@ body{
   position: fixed;
   bottom: 0;
 }
+
+.margin-bottom{
+  margin-bottom: 20px !important;
+}
+
+.nomargin{
+  margin: 0 !important;
+}
+
+@media only screen and (max-width:480px){
+  .margin-bottom-mobile{
+    margin-bottom: 20px !important;
+  }
+
+  .nomargin-mobile{
+    margin: 0 !important;
+  }
+}
+
