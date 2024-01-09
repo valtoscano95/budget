@@ -9,3 +9,8 @@
     min-height: 50px;
     max-height: 50px;
 }
+
+.logo{
+    text-decoration: none;
+    color: #ffffff;
+}
