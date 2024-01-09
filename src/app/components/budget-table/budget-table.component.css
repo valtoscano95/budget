@@ -1,7 +1,74 @@
 table {
-    width: 100%;
+    max-width: 100%;
+    /* width: 700px; */
 }
 
 section{
     margin-bottom: 100px;
+    width: 100%;
+}
+
+#budget td{
+    box-sizing: border-box;
+}
+
+/* first column */
+#budget tr td:nth-child(1){
+    width: 125px;
+}
+
+/* second column */
+#budget tr td:nth-child(2){
+    width: 200px;
+}
+
+/* third column */
+#budget tr td:nth-child(3){
+    width: 200px;
+}
+
+/* fourth column */
+#budget tr td:nth-child(4){
+    width: 200px;
+}
+
+/* fifth column */
+#budget tr td:nth-child(5){
+    width: 170px;
+    text-align: end;
+}
+
+/* table buttons */
+#budget button{
+    width: 35px;
+    min-width: 35px;
+    height: 35px;
+    padding: 0;
+    border-radius: 50%;
+    margin: 0 5px;
+}
+
+#budget .icon{
+    margin: 0;
+    color: var(--secondary-color);
+}
+
+/* categories */
+.category{
+    padding: 2px 8px;
+    border-radius: 50px;
+    border: 2px solid;
+    font-weight: bold;
+}
+
+.income{
+    color: green;
+    font-weight: 600;
+}
+
+@media only screen and (max-width:480px) {
+    #budget td{
+        font-size: 10px;
+    }
+    
 }
