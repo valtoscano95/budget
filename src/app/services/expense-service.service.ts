@@ -31,31 +31,46 @@ export class ExpenseService {
         
 ]
 
-//sort expenses
-  sortExpenses(expenseList:Expense[]):Expense[]{
+  //sort expenses
+  reverseSortExpenses(expenseList:Expense[]):Expense[]{
     let sortedList:Expense[] = []
-    //12-31 =
-    //12-29 =
-    //2-4 = 
-    //1-5 = 6
-    //1-4 = 5
-    //1-3 = 4
-    //1-2 = 3
-    //1-1 = 2
-    const arr = [1,4,6,23,3,27]
-    //{ day: number;
-    // month: number,
-    // amount: number;
-    // expense: string;
-    // category: string;}
-    console.log(arr.sort(function(a,b){
-      return a-b
-    }));
-    for(let expense of expenseList){
-      const date = +`${expense.day}${expense.month}`
-      console.log(date);
+
+    const monthSorting = this.reverseSortByMonth(expenseList);
+
+    //for each month sort by day
+    for(let month of monthSorting){
+      const daySorting = this.reverseSortByDay(month);
+      sortedList.push(...daySorting);
     }
+
     return sortedList;
+  }
+
+  //sort by months Z-A: array of expenses for each month
+  reverseSortByMonth(expenseList: Expense[]): Expense[][]{
+    let sortedList:Expense[][] = []
+
+    //filter values for each month
+    for (let i=12; i>0; i--){
+      const filterMonthArr = expenseList.filter(function(expense){
+        return expense.month == i
+      })
+
+      //if the current month has expenses in the filtered array, push it, otherwise ignore it
+      if(filterMonthArr.length>0){
+        sortedList.push(filterMonthArr);
+      }
+    }
+
+    return sortedList;
+  }
+
+  //sort month expenses by day Z-A
+  reverseSortByDay(monthExpenses: Expense[]):Expense[]{
+
+    //sort by the value of expense.day and return te value
+    return [...monthExpenses].sort(
+      function(expense1, expense2){ return expense2.day-expense1.day })
   }
 
   constructor() { }

@@ -5,7 +5,7 @@ import { months } from 'src/app/data/months';
 import { ExpenseService } from 'src/app/services/expense-service.service';
 import { Subscription } from 'rxjs';
 
-const expense_table: Expense[] = budget2023[0];
+const expense_table: Expense[] = budget2023;
 
 @Component({
   selector: 'app-budget-table',
@@ -23,7 +23,7 @@ export class TableComponent implements OnInit, OnDestroy{
   displayedColumns: string[] = ['date', 'expense', 'amount', 'category', 'actions'];
 
   getExpenses(expenses:Expense[]):Expense[]{
-    return expenses;
+    return this.expenseService.reverseSortExpenses(expenses) ;
   }
 
   getExpenseDate(month:number, day: number):string{
@@ -40,7 +40,7 @@ export class TableComponent implements OnInit, OnDestroy{
       if(expense){
         //sort expenses
         const newExpenseArray = [expense, ...this.dataSource];
-        const sortedExpenseArray = this.expenseService.sortExpenses(newExpenseArray);
+        const sortedExpenseArray = this.expenseService.reverseSortExpenses(newExpenseArray);
         this.dataSource = newExpenseArray;
       }
     });
